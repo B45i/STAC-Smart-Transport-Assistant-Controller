@@ -46,12 +46,17 @@ void displaySTAC() {
 
 }
 
-void displayString(String displayText) {
+void displayTraffic(String displayText) {
 
   display.clearDisplay(); // clears the screen and buffer
+  
+  display.setTextSize(1);
+  display.setTextColor(WHITE, BLACK);
+  display.setCursor(0, 0); 
+  display.println("Traffic is :");
+
   display.setTextSize(2);
   display.setTextColor(BLACK);
-  display.setCursor(0, 0);
   display.println(displayText);
   display.display();
 }
@@ -65,7 +70,7 @@ void setup()   {
   radio.startListening();
 
   display.begin(); // Nokia 5110 LCD Initialization.
-  display.setContrast(25); // LCD Contrast adjustments
+  display.setContrast(30); // LCD Contrast adjustments
   
   displaySTAC();
 
@@ -78,7 +83,7 @@ void loop() {
     char text[32] = "";
     radio.read(&text, sizeof(text));
     Serial.println(text);
-    displayString(text);
+    displayTraffic(text);
   }
 }
 
